@@ -62,6 +62,20 @@ async function doLabel() {
   )
 }
 
+/**
+ * Apply a label to the issue in this action.
+ *
+ * ex. `args = 'approve emergency approval'`
+ */
+async function doApprove() {
+  filterAction(tools.arguments.action)
+  const body = tools.arguments._.slice(1).join(' ')
+  tools.log.info('reason', body)
+  return checkStatus(
+      await tools.github.pulls.createReview(tools.context.issue({body, event: 'APPROVE'}))
+  )
+}
+
 function checkStatus(result) {
   if (result.status >= 200 && result.status < 300) {
     return result
