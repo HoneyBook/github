@@ -5,7 +5,8 @@ const tools = new Toolkit()
 const commands = {
   assign: doAssign,
   comment: doComment,
-  label: doLabel
+  label: doLabel,
+  approve: doApprove
 }
 
 const command = tools.arguments._[0]
